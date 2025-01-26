@@ -1,0 +1,10 @@
+LibraryManagement/
+├── src/
+│   ├── Book.java
+│   ├── Library.java
+│   ├── LibraryApp.java
+│   ├── UserInterface.java
+│   └── BookNotAvailableException.java
+├── lib/
+│   └── (Optional libraries for external functionality)
+└── README.md

@@ -1,0 +1,58 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Library {
+    private List<Book> books;
+
+    public Library() {
+        this.books = new ArrayList<>();
+    }
+
+    public void addBook(Book book) {
+        books.add(book);
+    }
+
+    public List<Book> getAvailableBooks() {
+        List<Book> availableBooks = new ArrayList<>();
+        for (Book book : books) {
+            if (book.isAvailable()) {
+                availableBooks.add(book);
+            }
+        }
+        return availableBooks;
+    }
+
+    public void borrowBook(String title) {
+        for (Book book : books) {
+            if (book.getTitle().equalsIgnoreCase(title) && book.isAvailable()) {
+                book.borrow();
+                System.out.println("You have borrowed: " + book.getTitle());
+                return;
+            }
+        }
+        System.out.println("Book not available or does not exist.");
+    }
+
+    public void returnBook(String title) {
+        for (Book book : books) {
+            if (book.getTitle().equalsIgnoreCase(title) && !book.isAvailable()) {
+                book.returnBook();
+                System.out.println("You have returned: " + book.getTitle());
+                return;
+            }
+        }
+        System.out.println("Book was not borrowed or does not exist.");
+    }
+
+    public void listBooks() {
+        if (books.isEmpty()) {
+            System.out.println("No books available in the library.");
+            return;
+        }
+
+        System.out.println("Books in the library:");
+        for (Book book : books) {
+            System.out.println(book);
+        }
+    }
+}

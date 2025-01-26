@@ -1,0 +1,50 @@
+import java.util.Scanner;
+
+public class LibraryApp {
+
+    public static void main(String[] args) {
+        Library library = new Library();
+        Scanner scanner = new Scanner(System.in);
+
+        // Pre-adding some books to the library for testing
+        library.addBook(new Book("Java Programming", "John Doe"));
+        library.addBook(new Book("Data Structures", "Jane Smith"));
+        library.addBook(new Book("Design Patterns", "Robert C. Martin"));
+
+        while (true) {
+            UserInterface.showMenu();
+            String choice = scanner.nextLine();
+
+            switch (choice) {
+                case "1":
+                    System.out.print("Enter book title to borrow: ");
+                    String borrowTitle = scanner.nextLine();
+                    library.borrowBook(borrowTitle);
+                    break;
+                case "2":
+                    System.out.print("Enter book title to return: ");
+                    String returnTitle = scanner.nextLine();
+                    library.returnBook(returnTitle);
+                    break;
+                case "3":
+                    library.listBooks();
+                    break;
+                case "4":
+                    System.out.print("Enter book title to add: ");
+                    String addTitle = scanner.nextLine();
+                    System.out.print("Enter author name: ");
+                    String addAuthor = scanner.nextLine();
+                    library.addBook(new Book(addTitle, addAuthor));
+                    System.out.println("Book added successfully.");
+                    break;
+                case "5":
+                    System.out.println("Exiting the library system...");
+                    scanner.close();
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Invalid option. Please try again.");
+            }
+        }
+    }
+}
